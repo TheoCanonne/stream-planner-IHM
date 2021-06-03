@@ -1,19 +1,27 @@
 import { IPlanningItem } from "@/types/planning-item.model";
-import { createStore } from "vuex";
+import { InjectionKey } from "vue";
+import { createStore, Store } from "vuex";
 import axios from "axios";
 import environment from "@/env/environment";
 
-export default createStore({
-  state: {
-    planningItems: [] as IPlanningItem[],
+export interface State {
+  planningItems: IPlanningItem[];
+}
+export const key: InjectionKey<Store<State>> = Symbol();
+
+export const store = createStore({
+  state(): State {
+    return {
+      planningItems: [] as IPlanningItem[],
+    };
   },
   getters: {
-    planningItems(state) {
+    planningItems(state: State) {
       return state.planningItems;
     },
   },
   mutations: {
-    updatePlanning(state, planningItems: IPlanningItem[]) {
+    updatePlanning(state: State, planningItems: IPlanningItem[]) {
       state.planningItems = planningItems.map((planningItem) => {
         const tmp = {
           ...planningItem,
@@ -26,7 +34,7 @@ export default createStore({
     },
   },
   actions: {
-    fetchPlanning(context) {
+    fetchPlanning(context, payload) {
       axios.get(environment.baseUrl + "/planning").then((response) => {
         const planningItems = (response.data as IPlanningItem[]).map((e) => ({
           ...e,

@@ -31,10 +31,10 @@
 
 <script lang="ts">
 import planningItem from "@/components/planning-item.vue";
-import { mapGetters } from "vuex";
-import store from "@/store";
+import { mapGetters, mapActions } from "vuex";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "Planning",
   components: {
     "planning-item": planningItem,
@@ -68,14 +68,15 @@ export default {
     ...mapGetters(["planningItems"]),
   },
   methods: {
+    ...mapActions(["fetchPlanning"]),
     deleteItem(id: string): void {
       console.log("Je te détruit " + id);
     },
   },
   mounted(): void {
-    store.dispatch("fetchPlanning");
+    this.fetchPlanning();
   },
-};
+});
 </script>
 <style scoped lang="scss">
 @import "../styles/card";
