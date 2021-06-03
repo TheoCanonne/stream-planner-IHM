@@ -1,0 +1,14 @@
+@import "./theme";
+
+.card {
+  background: $main-color-background;
+  box-shadow: $shadow-card;
+  border-radius: 10px;
+  .title {
+    color: $light-color;
+    text-transform: uppercase;
+    font-family: "Sarabun";
+    font-weight: 500;
+    font-size: 48px;
+  }
+}

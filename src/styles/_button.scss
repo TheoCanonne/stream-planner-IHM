@@ -1,0 +1,26 @@
+@import "./theme";
+
+.btn {
+  
+  &.btn-light {
+    background: $light-color;
+    &:hover {
+      filter: brightness(95%);
+    }
+  }
+  
+  border: 0px;
+  padding: 0.2em 1.3em;
+  font-size: 1.25em;
+  background: $main-color;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  transition: filter 0.2s ease;
+  &:hover {
+    filter: brightness(105%);
+  }
+}
+
+button, .btn {
+  cursor: pointer;
+}

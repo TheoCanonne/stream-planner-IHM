@@ -1,0 +1,19 @@
+@import "./theme";
+@font-face {
+  font-family: "Sarabun";
+  src: url("~@/assets/fonts/Sarabun/Sarabun-Light.ttf") format("truetype");
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+h1,
+h2 {
+  text-shadow: $text-shadow;
+}
+h3 {
+  font-size: 24px;
+}
