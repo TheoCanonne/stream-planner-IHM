@@ -2,7 +2,7 @@
   <div class="planning card">
     <h2 class="title">Planning</h2>
     <div class="sub-header">
-      <button class="btn btn-light">Ajouter</button>
+      <button class="btn btn-light" @click="openAddItem">Ajouter</button>
     </div>
     <div id="calendar">
       <div class="divider"></div>
@@ -27,10 +27,14 @@
       />
     </div>
   </div>
+  <modal v-if="showModal" @closeModal="showModal = false">
+    <add-planning-item></add-planning-item>
+  </modal>
 </template>
 
 <script lang="ts">
 import planningItem from "@/components/planning-item.vue";
+import addPlanningItem from "@/components/add-planning-item.vue";
 import { mapGetters, mapActions } from "vuex";
 import { defineComponent } from "vue";
 
@@ -38,6 +42,7 @@ export default defineComponent({
   name: "Planning",
   components: {
     "planning-item": planningItem,
+    "add-planning-item": addPlanningItem,
   },
   data() {
     return {
@@ -62,6 +67,7 @@ export default defineComponent({
         "18h00",
         "19h00",
       ],
+      showModal: true,
     };
   },
   computed: {
@@ -71,6 +77,9 @@ export default defineComponent({
     ...mapActions(["fetchPlanning"]),
     deleteItem(id: string): void {
       console.log("Je te détruit " + id);
+    },
+    openAddItem() {
+      this.showModal = true;
     },
   },
   mounted(): void {

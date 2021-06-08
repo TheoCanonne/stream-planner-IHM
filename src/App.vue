@@ -23,6 +23,7 @@ button {
 @import "./styles/fonts";
 @import "./styles/theme";
 @import "./styles/button";
+@import "./styles/animations";
 *,
 *:after,
 *:before {
