@@ -27,7 +27,11 @@
       />
     </div>
   </div>
-  <modal v-if="showModal" @closeModal="showModal = false">
+  <modal
+    title="Ajouter un créneau"
+    v-if="showModal"
+    @closeModal="showModal = false"
+  >
     <add-planning-item></add-planning-item>
   </modal>
 </template>
@@ -67,7 +71,7 @@ export default defineComponent({
         "18h00",
         "19h00",
       ],
-      showModal: true,
+      showModal: false,
     };
   },
   computed: {

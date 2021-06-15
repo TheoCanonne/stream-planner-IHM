@@ -1,9 +1,9 @@
 export interface IPlanningItem {
   title: string;
   description: string;
-  startDate: Date;
-  endDate: Date;
-  fromRow: number;
-  toRow: number;
-  column: number;
+  startDate: Date | null;
+  endDate: Date | null;
+  fromRow?: number | null;
+  toRow?: number | null;
+  column?: number | null;
 }

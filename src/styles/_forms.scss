@@ -1,0 +1,29 @@
+@import "./theme";
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  label {
+    font-weight: 600;
+    font-size: 1em;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  input,
+  textarea {
+    line-height: 1.75em;
+    padding: 8px 16px;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    outline-color: $main-color;
+  }
+
+  &.errored {
+    input, textarea {
+      border: 1px solid $danger-color;
+      outline-color: $danger-color;
+    }
+  }
+}

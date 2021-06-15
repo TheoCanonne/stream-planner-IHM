@@ -2,6 +2,10 @@
   <teleport to="#app">
     <div class="modal">
       <div class="modal-container">
+        <div class="modal-header">
+          <h3>{{ title }}</h3>
+          <font-awesome-icon class="icon-item" icon="times" />
+        </div>
         <slot></slot>
       </div>
     </div>
@@ -13,11 +17,17 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "modal",
   emits: ["closeModal"],
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
   mounted() {
-    document.addEventListener("click", this.clickHandler);
+    document.addEventListener("mousedown", this.clickHandler);
   },
   beforeUnmount() {
-    document.removeEventListener("click", this.clickHandler);
+    document.removeEventListener("mousedown", this.clickHandler);
   },
   methods: {
     clickHandler(event: MouseEvent) {
@@ -42,10 +52,17 @@ export default defineComponent({
   background: rgba(0, 0, 0, 0.3);
 
   > .modal-container {
+    min-width: 30%;
     background: white;
     border-radius: 5px;
     padding: 10px;
     animation: scaleIn 200ms forwards;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }
 </style>

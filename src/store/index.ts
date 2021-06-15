@@ -25,9 +25,9 @@ export const store = createStore({
       state.planningItems = planningItems.map((planningItem) => {
         const tmp = {
           ...planningItem,
-          column: planningItem.startDate.getDay() + 1,
-          fromRow: planningItem.startDate.getHours() - 8,
-          toRow: planningItem.endDate.getHours() - 8,
+          column: planningItem.startDate && planningItem.startDate.getDay() + 1,
+          fromRow: planningItem.startDate && planningItem.startDate.getHours() - 8,
+          toRow: planningItem.endDate && planningItem.endDate.getHours() - 8,
         };
         return tmp;
       });
@@ -38,11 +38,11 @@ export const store = createStore({
       axios.get(environment.baseUrl + "/planning").then((response) => {
         const planningItems = (response.data as IPlanningItem[]).map((e) => ({
           ...e,
-          startDate: new Date(
+          startDate: e.startDate && new Date(
             new Date(e.startDate).getTime() +
               new Date(e.startDate).getTimezoneOffset() * 60000
           ),
-          endDate: new Date(
+          endDate: e.endDate && new Date(
             new Date(e.endDate).getTime() +
               new Date(e.endDate).getTimezoneOffset() * 60000
           ),
@@ -50,6 +50,12 @@ export const store = createStore({
         context.commit("updatePlanning", planningItems);
       });
     },
+    addPlanningItem(context, payload) {
+      console.log(payload);
+      axios.post(environment.baseUrl + "/planning", payload).then((response) => {
+        console.log(response);
+      })
+    }
   },
   modules: {},
 });

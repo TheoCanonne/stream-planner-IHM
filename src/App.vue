@@ -24,6 +24,7 @@ button {
 @import "./styles/theme";
 @import "./styles/button";
 @import "./styles/animations";
+@import "./styles/forms";
 *,
 *:after,
 *:before {
